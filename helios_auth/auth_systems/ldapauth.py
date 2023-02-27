@@ -32,13 +32,10 @@ from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 
 
-from helios_auth.auth_systems.ldapbackend import backend
-
-
 # some parameters to indicate that status updating is possible
 STATUS_UPDATES = False
 
-
+LDAP_LOGIN_URL_NAME = "auth@ldap@login"
 LOGIN_MESSAGE = _("Conecte-se com sua conta (CPF e senha)")
 
 class LoginForm(forms.Form):
@@ -49,6 +46,7 @@ class LoginForm(forms.Form):
 def ldap_login_view(request):
     from helios_auth.view_utils import render_template
     from helios_auth.views import after
+    from helios_auth.auth_systems.ldapbackend import backend
 
     error = None
 
@@ -67,7 +65,7 @@ def ldap_login_view(request):
                 password = form.cleaned_data['password'].strip()
 
                 auth = backend.CustomLDAPBackend()
-                user = auth.authenticate(username, password)
+                user = auth.authenticate(None, username=username, password=password)
                 
                 if user:
                     request.session['ldap_user']  = {
@@ -114,3 +112,5 @@ def check_constraint(constraint, user_info):
 
 def can_create_election(user_id, user_info):
   return True
+
+urlpatterns = [url(r'^ldap/login', ldap_login_view, name=LDAP_LOGIN_URL_NAME)]
