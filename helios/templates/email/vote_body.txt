@@ -11,7 +11,7 @@
 <br>
 <p> URL da Eleição: {{election_vote_url}}</p>
 
-<p>Código de Identificação da Eleição: {{election_hash}}</p>
+<p>Código de Identificação da Eleição: {{voter.election.hash}}</p>
 <br>
 
 {% ifequal voter.voter_type "password" %}
@@ -20,7 +20,7 @@
     <strong>Sua senha para essa eleição</strong>: {{voter.voter_password}}<br>
 </p>
 {% else %}
-<p>Conecte-se com seu usuário e senha dos sistemas do IFSC.</p>
+<p>Conecte-se com seu usuário e senha dos sistemas da UEPB.</p>
 {% endifequal %}
 
 {% if voter.vote_hash %}
@@ -32,7 +32,7 @@
 </p>
 {% endif %}
 
-{% if election_use_voter_aliases %}
+{% if election.use_voter_aliases %}
 <p>
 Para proteger a sua privacidade, essa eleição está configurada para utilizar um pseudônimo de eleitor, assim seu login, nome ou email não serão mostrados para o público em geral. Portanto, ao invés de seu nome, o centro de rastreamento de cédula vai listar apenas o seu pseudônimo.
 <br>
@@ -44,12 +44,10 @@ IMPORTANTE: quando você for solicitado a informar seu login para votar, informe
 <p>Você pode depositar quantos votos quiser, apenas o último voto será contabilizado.</p>
 --
 <br>
-<font style="" size="1" face="verdana, sans-serif"><b style="">Instituto Federal de Santa Catarina - Reitoria</b>
-</font>
+<b>Universidade Estadual da Paraíba</b>
 <br>
-<font style="" size="1" face="verdana, sans-serif">Rua 14 de Julho, 150, Coqueiros, Florianópolis / SC - CEP: 88075-010</font>
+Rua das Baraúnas, 351, Campina Grande - PB - CEP: 58429-500
 <br>
-<u><a href="http://www.ifsc.edu.br" target="_blank" style=""><font style="" face="verdana, sans-serif">www.ifsc.edu.br</font></a></u>
-
+<a href="http://www.uepb.edu.br" target="_blank"> www.uepb.edu.br</a>
 </body>
 </html>
